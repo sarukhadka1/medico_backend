@@ -45,6 +45,8 @@ app.use('/api/doctor', require('./routes/doctorRoutes')); // Updated route
 app.use('/api/rating', require("./routes/reviewRoutes"));
 app.use('/api/myplan', require("./routes/myplanRoutes")); // Updated route
 app.use('/api/contact', require('./routes/contactRoutes'));
+app.use('/api/payment', require('./routes/PaymentRoutes'));
+
 
 const path = require('path');
 

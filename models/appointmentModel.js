@@ -26,7 +26,7 @@ const appointmentSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    enum: ['Cash on arrival', 'Khalti Payment'],
+    enum: ['Cash on arrival', 'Khalti'],
     default: null,
   },
   createdAt: {

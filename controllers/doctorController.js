@@ -2,64 +2,7 @@ const path = require('path');
 const doctorModel = require('../models/doctorModel');
 const fs = require('fs'); // filesystem
 
-// const createDoctor = async (req, res) => {
-//     console.log(req.body);
-//     console.log(req.files);
 
-//     const {
-//         doctorName,
-//         doctorSpecialization,
-//         doctorFees,
-//         doctorDescription,
-        
-//     } = req.body;
-
-//     if (!doctorName || !doctorSpecialization || !doctorFees || !doctorDescription) {
-//         return res.status(400).json({
-//             "success": false,
-//             "message": "Please enter all fields"
-//         });
-//     }
-
-//     if (!req.files || !req.files.doctorImage) {
-//         return res.status(400).json({
-//             "success": false,
-//             "message": "Image not found"
-//         });
-//     }
-
-//     const { doctorImage } = req.files;
-
-//     const imageName = `${Date.now()}-${doctorImage.name}`;
-//     // const imageUploadPath = path.join(__dirname, `../public/doctors${imageName}`);
-//     const imageUploadPath = path.join(__dirname, `../public/doctors${imageName}`);
-
-
-//     try {
-//         await doctorImage.mv(imageUploadPath);
-
-//         const newDoctor = new doctorModel({
-//             doctorName: doctorName,
-//             doctorSpecialization: doctorSpecialization,
-//             doctorFees: doctorFees,
-//             doctorDescription: doctorDescription,
-//             doctorImage: imageName
-//         });
-//         const doctor = await newDoctor.save();
-//         res.status(201).json({
-//             "success": true,
-//             "message": "Doctor Created Successfully",
-//             "data": doctor
-//         });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({
-//             "success": false,
-//             "message": "Internal server error",
-//             "error": error
-//         });
-//     }
-// };
 
 const createDoctor = async (req, res) => {
     console.log(req.body);
@@ -239,70 +182,7 @@ const updateDoctor = async (req, res) => {
         });
     }
 };
-// const updateDoctor = async (req, res) => {
-//     try {
-//         let imageName;
 
-//         // Handle new image upload
-//         if (req.files && req.files.doctorImage) {
-//             const { doctorImage } = req.files;
-
-//             // Generate a unique filename for the new image
-//             imageName = `${Date.now()}-${doctorImage.name}`;
-//             const imageUploadPath = path.join(__dirname, `../public/doctors/${imageName}`);
-
-//             // Move the uploaded image to the server
-//             await doctorImage.mv(imageUploadPath);
-
-//             // Set the image name in req.body
-//             req.body.doctorImage = imageName;
-
-//             // Delete the old image if it exists
-//             const existingDoctor = await doctorModel.findById(req.params.id);
-//             if (existingDoctor && existingDoctor.doctorImage) {
-//                 const oldImagePath = path.join(__dirname, `../public/doctors/${existingDoctor.doctorImage}`);
-//                 if (fs.existsSync(oldImagePath)) {
-//                     fs.unlinkSync(oldImagePath); // Safely delete the old image
-//                 }
-//             }
-//         }
-
-//         // Ensure doctorImage is either undefined or a valid string
-//         if (req.body.doctorImage && typeof req.body.doctorImage !== 'string') {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "Invalid image format",
-//             });
-//         }
-
-//         // Update the doctor's information
-//         const updatedDoctor = await doctorModel.findByIdAndUpdate(
-//             req.params.id,
-//             req.body,
-//             { new: true, runValidators: true } // Ensure validation runs
-//         );
-
-//         if (!updatedDoctor) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "Doctor not found",
-//             });
-//         }
-
-//         res.status(201).json({
-//             success: true,
-//             message: "Doctor Updated Successfully",
-//             doctor: updatedDoctor,
-//         });
-//     } catch (error) {
-//         console.error(error); // Log the full error for debugging
-//         res.status(500).json({
-//             success: false,
-//             message: "Internal Server Error",
-//             error: error.message,
-//         });
-//     }
-// };
 
 
 
